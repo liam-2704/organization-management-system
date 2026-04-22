@@ -82,18 +82,26 @@ public class Main {
 
     private static void createOrganization() {
 
-        organization = new Group("ABC Company", "Hoang Lam");
+        organization = new Group("ABC Company", "Hoang Lam Duong", "Alexander Barbu");
 
-        Group accounting = new Group("Accounting", "Matsu Matsu");
-        Group engineering = new Group("Engineering", "Big Raf");
+        Group accounting = new Group("Accounting", "Leo Matsu");
+        Group engineering = new Group("Engineering", "Raf Jabbari");
+        Group marketing = new Group("Marketing", "Steve Rogers");
 
-        accounting.add(new Worker("Rares"));
-        accounting.add(new Worker("Wally"));
+        accounting.add(new Worker("Rares Barbu"));
+        accounting.add(new Worker("Wally Allan"));
+        accounting.add(new Worker("Cris Evans"));
 
-        engineering.add(new Worker("Illia"));
+        engineering.add(new Worker("Illia Hormone"));
         engineering.add(new Worker("Mickey Mouse"));
+        engineering.add(new Worker("LeBrone James"));
+
+        marketing.add(new Worker("Stephen Curry"));
+        marketing.add(new Worker("Michael Jackson"));
+        marketing.add(new Worker("Drake"));
 
         organization.add(accounting);
         organization.add(engineering);
+        organization.add(marketing);
     }
 }

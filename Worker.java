@@ -5,6 +5,6 @@ public class Worker extends Component {
 
     @Override
     public void print(int indent) {
-        System.out.println("   ".repeat(indent) + name);
+        System.out.println("   ".repeat(indent - 1) + "Worker: " + name);
     }
 }

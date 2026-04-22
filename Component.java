@@ -1,4 +1,4 @@
-public abstract class Component {
+public abstract class Component implements ComponentIF {
     protected String name;
 
     public Component(String name) {
