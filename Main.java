@@ -63,6 +63,22 @@ public class Main {
                     break;
 
                 case "3":
+                    if (organization == null) {
+                        System.out.println("Organization not created yet.");
+                        break;
+                    }
+
+                    organization.print(0);
+
+                    System.out.print("Enter worker name to remove: ");
+                    String removeName = scanner.nextLine();
+                    boolean removed = organization.removeWorker(removeName);
+
+                    if (!removed) {
+                        System.out.println("Worker not found.");
+                        break;
+                    }
+                    System.out.println(removeName + " is removed.");
 
                     System.out.println();
                     organization.print(0);
