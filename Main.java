@@ -1,5 +1,11 @@
 import java.util.Scanner;
 
+class OrganizationException extends Exception {
+    public OrganizationException(String message) {
+        super(message);
+    }
+}
+
 public class Main {
 
     private static Group organization = null;
@@ -35,42 +41,51 @@ public class Main {
                     break;
 
                 case "2":
-                    if (organization == null) {
-                        System.out.println("Organization not created yet.");
-                        break;
+                    try {
+
+                        if (organization == null) {
+                            throw new OrganizationException(
+                                    "ERROR: Organization is not created yet.");
+                        }
+
+                        organization.print(0);
+
+                        System.out.print("Enter group name: ");
+                        String groupName = scanner.nextLine();
+                        Group targetGroup = organization.findGroup(groupName);
+
+                        if (targetGroup == null) {
+                            throw new OrganizationException("ERROR: Group not found.");
+                        }
+
+                        System.out.print("Enter worker's name: ");
+                        String workerName = scanner.nextLine();
+
+                        if (!workerName.matches("^[A-Z][a-z]+ [A-Z][a-z]+$")) {
+                            throw new OrganizationException(
+                                    "ERROR: Invalid name. Please enter a valid name.");
+                        }
+
+                        targetGroup.add(new Worker(workerName));
+                        System.out.println(workerName + " is added.");
+                        System.out.println();
+                        organization.print(0);
+
+                    } catch (OrganizationException e) {
+
+                        System.out.println(e.getMessage());
                     }
-
-                    organization.print(0);
-
-                    System.out.println("Enter group name: ");
-                    String groupName = scanner.nextLine();
-
-                    Group targetGroup = organization.findGroup(groupName);
-
-                    if (targetGroup == null) {
-                        System.out.println("Group not found.");
-                        break;
-                    }
-
-                    System.out.print("Enter new worker name: ");
-                    String workerName = scanner.nextLine();
-                    System.out.println(workerName + " is added.");
-
-                    targetGroup.add(new Worker(workerName));
-
-                    System.out.println();
-                    organization.print(0);
                     break;
 
                 case "3":
                     if (organization == null) {
-                        System.out.println("Organization not created yet.");
+                        System.out.println("ERROR: Organization is not created yet.");
                         break;
                     }
 
                     organization.print(0);
 
-                    System.out.print("Enter worker name to remove: ");
+                    System.out.print("Enter worker's name to remove: ");
                     String removeName = scanner.nextLine();
                     boolean removed = organization.removeWorker(removeName);
 
